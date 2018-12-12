@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
     state = {
@@ -30,7 +30,7 @@ class App extends Component {
         const persons = [...this.state.persons];
         persons[personIndex] = person;
 
-        this.setState( {persons: persons} )
+        this.setState({persons: persons})
     };
 
     deletePersonHandler = (personIndex) => {
@@ -91,15 +91,17 @@ class App extends Component {
         }
 
         return (
-            <div className="App">
-                <h1>Hello!</h1>
-                <p className={classes.join(' ')}>This is really working.</p>
-                <button
-                    style={style}
-                    onClick={this.togglePersonsHandler}>Toggle persons
-                </button>
-                {persons}
-            </div>
+            <StyleRoot>
+                <div className="App">
+                    <h1>Hello!</h1>
+                    <p className={classes.join(' ')}>This is really working.</p>
+                    <button
+                        style={style}
+                        onClick={this.togglePersonsHandler}>Toggle persons
+                    </button>
+                    {persons}
+                </div>
+            </StyleRoot>
         );
         //   return React.createElement('div', {classname: 'App'}, React.createElement('h1', null, 'Hello there!'));
     }
