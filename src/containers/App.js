@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import withClass from '../hoc/withClass';
 
 class App extends PureComponent {
 
@@ -78,19 +79,19 @@ class App extends PureComponent {
         }
 
         return (
-                <div className={classes.App}>
-                    <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
-                    <Cockpit
-                        appTitle={this.props.title}
-                        showPersons={this.state.showPersons}
-                        persons={this.state.persons}
-                        clicked={this.togglePersonsHandler}
-                    />
-                    {persons}
-                </div>
+            <>
+                <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
+                <Cockpit
+                    appTitle={this.props.title}
+                    showPersons={this.state.showPersons}
+                    persons={this.state.persons}
+                    clicked={this.togglePersonsHandler}
+                />
+                {persons}
+            </>
         );
         //   return React.createElement('div', {classname: 'App'}, React.createElement('h1', null, 'Hello there!'));
     }
 }
 
-export default App;
+export default withClass(App, classes.App);
