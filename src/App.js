@@ -49,6 +49,26 @@ class App extends Component {
             cursor: 'pointer'
         };
 
+        let persons = null;
+
+        if (this.state.showPersons) {
+            persons = (
+                <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}/>
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                        change={this.nameChangeHandler}
+                        click={this.switchNameHandler.bind(this, 'Max!')}>Hobbies: Racing</Person>
+                    <Person
+                        name={this.state.persons[2].name}
+                        age={this.state.persons[2].age}/>
+                </div>
+            );
+        }
+
         return (
             <div className="App">
                 <h1>Hello!</h1>
@@ -57,22 +77,7 @@ class App extends Component {
                     style={style}
                     onClick={this.togglePersonsHandler}>Toggle persons
                 </button>
-                {
-                    this.state.showPersons === true ?
-                    <div>
-                        <Person
-                            name={this.state.persons[0].name}
-                            age={this.state.persons[0].age}/>
-                        <Person
-                            name={this.state.persons[1].name}
-                            age={this.state.persons[1].age}
-                            change={this.nameChangeHandler}
-                            click={this.switchNameHandler.bind(this, 'Max!')}>Hobbies: Racing</Person>
-                        <Person
-                            name={this.state.persons[2].name}
-                            age={this.state.persons[2].age}/>
-                    </div> : null
-                }
+                {persons}
             </div>
         );
         //   return React.createElement('div', {classname: 'App'}, React.createElement('h1', null, 'Hello there!'));
