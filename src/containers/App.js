@@ -1,18 +1,39 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-class App extends Component {
-    state = {
-        persons: [
-            {id: '123', name: 'Max', age: 28},
-            {id: '124', name: 'Mary', age: 25},
-            {id: '125', name: 'Steve', age: 26}
-        ],
-        otherState: 'some other value',
-        showPersons: false
-    };
+class App extends PureComponent {
+
+    constructor(props) {
+        super(props);//needed!
+        console.log(['dsfsdfdsf'], props);
+        this.state = {
+            persons: [
+                {id: '123', name: 'Max', age: 28},
+                {id: '124', name: 'Mary', age: 25},
+                {id: '125', name: 'Steve', age: 26}
+            ],
+            otherState: 'some other value',
+            showPersons: false
+        };
+    }
+
+    // shouldComponentUpdate (nextProps, nextState) {
+    //     return nextState.persons !== this.state.persons ||
+    //         nextState.showPersons !== this.state.showPersons;
+    // }
+
+    // this works in modern apps
+    // state = {
+    //     persons: [
+    //         {id: '123', name: 'Max', age: 28},
+    //         {id: '124', name: 'Mary', age: 25},
+    //         {id: '125', name: 'Steve', age: 26}
+    //     ],
+    //     otherState: 'some other value',
+    //     showPersons: false
+    // };
 
     nameChangeHandler = (event, id) => {
         const personIndex = this.state.persons.findIndex(p => {
@@ -46,6 +67,7 @@ class App extends Component {
     };
 
     render() {
+        console.log("app renders in app");
         let persons = null;
 
         if (this.state.showPersons) {
@@ -57,6 +79,7 @@ class App extends Component {
 
         return (
                 <div className={classes.App}>
+                    <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
                     <Cockpit
                         appTitle={this.props.title}
                         showPersons={this.state.showPersons}
