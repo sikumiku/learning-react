@@ -18,14 +18,15 @@ const cockpit = (props) => {
 
     // Aux is good to use if you dont want to just create a wrapping div
     return (
-        <>
+        <Aux>
             <h1>{props.appTitle}</h1>
             <p className={assignedClasses.join(' ')}>This is really working.</p>
             <button
                 className={btnClass}
                 onClick={props.clicked}>Toggle persons
             </button>
-        </>
+            <button onClick={props.login}>Log in</button>
+        </Aux>
     );
 };
 
